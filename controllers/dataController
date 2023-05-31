@@ -1,0 +1,29 @@
+const Data = require("../models/Data.js");
+const Test = require("../models/Test.js");
+const asyncHandler = require("express-async-handler");
+
+// @desc    Get all data
+// @route   GET /data
+// @access  Public
+const getAllData = asyncHandler(async (req, res) => {
+  const allData = await Data.find();
+  if (!allData?.length) {
+    return res.status(404).json({ message: "No data found" });
+  }
+  res.json(allData);
+});
+
+const createData = asyncHandler(async (req, res) => {
+  const dataObject = ({ _id, label_name } = req.body);
+  if (!_id || !label_name) {
+    return res.status(400).json({ message: "Data required" });
+  }
+  const newData = await Data.create(dataObject);
+
+  if (newData) {
+    res.status(201).json({ message: `New Data Object ${newData._id} created` });
+  } else {
+    res.status(500).json({ message: "Data creation failed" });
+  }
+});
+module.exports = { getAllData, createData };
