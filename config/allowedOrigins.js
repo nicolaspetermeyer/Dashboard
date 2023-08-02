@@ -7,6 +7,7 @@ const allowedOrigins = [
 
   "http://172.23.4.80",
   "http://172.23.4.80:3001",
+  "http://192.168.1.99:3001",
 ];
 
 module.exports = allowedOrigins;
