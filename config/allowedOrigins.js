@@ -11,7 +11,7 @@ const allowedOrigins = [
   "*"
 =======
   "http://192.168.1.99:3001",
->>>>>>> 58476c452f4753601c47630f4477c894aa3d6760
+  "*",
 ];
 
 module.exports = allowedOrigins;
