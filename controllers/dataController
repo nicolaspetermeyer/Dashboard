@@ -13,14 +13,6 @@ const getAllData = asyncHandler(async (req, res) => {
   res.json(allData);
 });
 
-// @desc Post message
-// @route Post /messasge
-// @access Public
-
-
-
-
-
 const createData = asyncHandler(async (req, res) => {
   const dataObject = ({ _id, label_name } = req.body);
   if (!_id || !label_name) {

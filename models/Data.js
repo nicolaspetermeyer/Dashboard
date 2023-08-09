@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const DataSchema = new mongoose.Schema({
   _id: String,
+  image: String,
   detections: [
     {
       label_name: String,
