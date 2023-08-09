@@ -1,4 +1,5 @@
 const Data = require("../models/Data.js");
+const Message = require("../models/Message.js")
 const asyncHandler = require("express-async-handler");
 
 // @desc    Get all data
@@ -11,6 +12,14 @@ const getAllData = asyncHandler(async (req, res) => {
   }
   res.json(allData);
 });
+
+// @desc Post message
+// @route Post /messasge
+// @access Public
+
+
+
+
 
 const createData = asyncHandler(async (req, res) => {
   const dataObject = ({ _id, label_name } = req.body);

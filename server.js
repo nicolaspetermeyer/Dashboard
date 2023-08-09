@@ -26,6 +26,31 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root.js"));
 app.use("/data", require("./routes/dataRoutes.js"));
 
+const messages = [];
+app.post('/api/messages', (req, res) => {
+  const { content } = req.body;
+
+  if (!content) {
+    return res.status(400).json({ error: 'Content is required.'});
+  }
+
+  const newMessage = {
+    id: messages.length+1,
+    content,
+    timestamp: new Date().toISOString()
+  };
+
+  messages.push(newMessage);
+
+  res.status(201).json(newMessage)
+})
+
+app.get('/api/messages', (req, res) => {
+  res.json(messages);
+});
+
+
+
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
