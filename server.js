@@ -62,11 +62,16 @@ app.post('/api/messages/delete', (req, res) => {
 //---- POST ----
 const favorite = [];
 app.post('/api/favorite', (req, res) => {
-  const { favorite: newFavorite } = req.body;
+  const { url } = req.body;
   console.log(res)
-  // if (!newFavorite || !newFavorite.url) {
-  //   return res.status(400).json({ error: 'invalid data.'});
-  // }
+  if (!url) {
+    return res.status(400).json({ error: 'invalid data.'});
+  }
+
+  const newFavorite = {
+    url
+  }
+
   favorite.push(newFavorite);
 
   res.status(201).json(newFavorite)
