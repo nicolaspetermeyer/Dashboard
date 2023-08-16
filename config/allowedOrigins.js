@@ -6,6 +6,9 @@ const allowedOrigins = [
   "http://127.0.0.1",
 
   "http://172.23.4.80",
+  "http://172.23.4.80/",
+  "http://172.23.4.80/data",
+  "http://172.23.4.80/api/messages",
   "http://172.23.4.80:3001",
   "http://172.23.4.80:3001/data",
   "http://172.23.4.80:3001/api/messages",

@@ -26,6 +26,8 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root.js"));
 app.use("/data", require("./routes/dataRoutes.js"));
 
+//---- Message API ----
+//---- POST ----
 const messages = [];
 app.post('/api/messages', (req, res) => {
   const { content } = req.body;
@@ -45,10 +47,35 @@ app.post('/api/messages', (req, res) => {
   res.status(201).json(newMessage)
 })
 
+//---- GET ----
 app.get('/api/messages', (req, res) => {
   res.json(messages);
 });
 
+//---- DELETE -----
+app.post('/api/messages/delete', (req, res) => {
+  messages.length = 0; // Clear the messages array
+  res.json({ message: 'Messages cleared successfully' });
+});
+
+//---- Favorite API ----
+//---- POST ----
+const favorite = [];
+app.post('/api/favorite', (req, res) => {
+  const { favorite: newFavorite } = req.body;
+  console.log(res)
+  // if (!newFavorite || !newFavorite.url) {
+  //   return res.status(400).json({ error: 'invalid data.'});
+  // }
+  favorite.push(newFavorite);
+
+  res.status(201).json(newFavorite)
+})
+
+//---- GET ----
+app.get('/api/favorite', (req, res) => {
+  res.json(favorite);
+});
 
 
 app.all("*", (req, res) => {
